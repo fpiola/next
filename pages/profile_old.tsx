@@ -1,5 +1,6 @@
 
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from 'next';
+import { GetStaticPaths } from 'next';
 
 type Profile = {
     name: string;
@@ -7,10 +8,10 @@ type Profile = {
 }
 
 type ProfileProps = {
-    profile: Profile[]
+    profile: Profile;
 }
 
-export default function Profile({ profile }: ProfileProps) {
+export default function Profile( {profile} : ProfileProps) {
 
     return (
         <div>
@@ -20,6 +21,14 @@ export default function Profile({ profile }: ProfileProps) {
         </div>
     )
 }
+
+/*
+export const getStaticPaths: GetStaticPaths = async () => {
+    return {
+        paths: [],
+        fallback: "blocking"
+    }
+*/
 
 export const getStaticProps: GetStaticProps = async () => {
     const response = await fetch('https://api.github.com/users/fpiola')

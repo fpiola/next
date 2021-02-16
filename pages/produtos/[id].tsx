@@ -1,13 +1,18 @@
 
-import { useRouter } from 'next/router'
 
-function Produtos() {
-    const router = useRouter();
-    const id = router.query.id;
-    return (
-        <div>ID do Prodtuo {id}</div>
-    )
+export async function getServerSideProps(context){
+    const id = context.query.id
+    return {
+        props: {
+            id: id
+        }
+    }
 }
 
+function Produtos(props) {
+    return (
+        <div>ID do Produto {props.id}</div>
+    )
+}
 
 export default Produtos;
